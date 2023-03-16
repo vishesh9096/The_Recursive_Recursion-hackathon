@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import  MaterialCommunityIcons  from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Dimensions, Image, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SettingsScreen from '../SettingsScreen';
