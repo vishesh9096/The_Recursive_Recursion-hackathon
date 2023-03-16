@@ -9,10 +9,15 @@ const Drawer = createDrawerNavigator();
 
 const Home = () => {
   return (
-    <Drawer.Navigator >
-    <Drawer.Screen name="Dash" component={HomeDash}  />
+    <Drawer.Navigator screenOptions={{
+      headerShown: true,
+      headerTransparent:true,
+      headerTintColor: 'gray',
+    
+    }}>
+    <Drawer.Screen name="Home" component={HomeDash} />
 
-  </Drawer.Navigator> 
+  </Drawer.Navigator>
   )
 }
 
