@@ -6,10 +6,16 @@ import {  StarIcon as StarIconOutline } from 'react-native-heroicons/solid';
 import { ScrollView } from 'react-native-gesture-handler';
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
 const HomeDash = () => {
+
+    const getValues = async() =>{
+        const id = await AsyncStorage.getItem("token");
+        console.log(id);
+      }
     const [deals,setdeals] = useState([]);
     const [pdt,setpdt] = useState([]);
 
@@ -113,7 +119,9 @@ const HomeDash = () => {
 
 
         <ScrollView horizontal={true} className="pt-2 pb-28 max-h-32 px-4 gap-x-6">
-            <TouchableOpacity className="h-20 w-20 rounded-full bg-red-300">
+            <TouchableOpacity
+            onPress={()=>{getValues()}}
+            className="h-20 w-20 rounded-full bg-red-300">
                 <Image 
                 className="h-20 w-20 rounded-full"
                 source={{uri:"https://img.freepik.com/free-photo/portrait-handsome-smiling-stylish-young-man-model-dressed-jeans-clothes-fashion-man_158538-5030.jpg?w=2000"}} />

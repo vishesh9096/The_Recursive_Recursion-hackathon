@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "basicApp",
-    "slug": "basicApp",
+    "slug": "therecursives",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "797d2f0a-352f-4832-9caf-2668c70a1a6a"
+      }
+    },
+    "owner": "visheshgatha"
   }
 }

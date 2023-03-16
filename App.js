@@ -11,6 +11,8 @@ import SubCategoryScreen from './screens/SubCategoryScreen';
 import TDScreen from './screens/TDScreen';
 import { store } from './store'
 import { Provider } from 'react-redux'
+import LoginScreen from './screens/LoginScreen';
+import Chatbot from './screens/Chatbot';
 
 
 
@@ -27,6 +29,8 @@ export default function App() {
 
 
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="Chat" component={Chatbot} />
+        <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name = "Product" component= {ProductScreen}/>
     <Stack.Screen name = "SubCategory" component={SubCategoryScreen}/>
 
