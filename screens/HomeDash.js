@@ -5,6 +5,7 @@ import { BellIcon, HeartIcon, ListBulletIcon, MagnifyingGlassIcon, StarIcon } fr
 import {  StarIcon as StarIconOutline } from 'react-native-heroicons/solid';
 import { ScrollView } from 'react-native-gesture-handler';
 import axios from "axios";
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -19,6 +20,7 @@ const HomeDash = () => {
         }
     
     }
+    const navigation = useNavigation();
 
      async function fetchData(){
         console.log("Fetching")
@@ -149,27 +151,19 @@ const HomeDash = () => {
             <Carousel
                 loop
                 width={width}
-
                 height={500}
-
-                height={width}
-
                 autoPlay={true}
                 data={data}
                 scrollAnimationDuration={2000}
                 renderItem={({  index }) => (
-
                     <View className="">
 
-                    <View className="pt-28 h-60">
-
-
-                        <Image source={{uri:`${data[index].imgUrl}`   }} className="w-120 h-80"/>
+                        <Image source={{uri:`${data[index].imgUrl}`   }} className="w-full h-full"/>
                         <Text style={{ textAlign: 'center', fontSize: 30 }}>
                            {data[index].title}
                         </Text>
                     </View>
-                )
+                )}
             />
 
 <View className="flex-row items-center px-4 pt-8 gap-x-4">
@@ -224,7 +218,24 @@ const HomeDash = () => {
 deals.Tour && deals.Tour.map(deals=>{
 return(
     <>
-<TouchableOpacity className="pl-4">
+<TouchableOpacity 
+onPress={()=>{navigation.navigate("Product",
+{paramKey:data._id,
+    Name:deals.Name,
+    MPR:deals.MRP,
+    Category:deals.Category,
+    SubCategory:deals.SubCategory,
+    Discount:deals.Discount,
+    Brand:deals.Brand,
+    Stock:deals.Stock,
+    Desc:deals.Desc,
+    Image:deals.Image,
+
+
+
+    })
+}}
+className="pl-4">
 <View className="h-60 w-48 bg-white rounded-xl">
     <Image source={{uri:`${deals.Image}`}} className="h-full w-full "/>
     <View className="pt-2"></View>

@@ -1,15 +1,79 @@
 import { View, Text, SafeAreaView, ScrollView, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ArrowLeftCircleIcon, HeartIcon, MagnifyingGlassCircleIcon, ShareIcon, ShoppingBagIcon, StarIcon } from 'react-native-heroicons/solid'
+import { useNavigation, useRoute } from '@react-navigation/native';
+import axios from "axios"
+import { useSelector, useDispatch } from 'react-redux'
+import { addToBasket, removeFromBasket, selectBasketItems, selectBasketTotal } from '../features/basketSlice';
 
 const ProductScreen = () => {
+  const basketTotal = useSelector(selectBasketTotal)
+
+  const dispatch  = useDispatch();
+  const items = useSelector(selectBasketItems);
+  const [name,setName] = useState("");
+  const [price, setprice] = useState(0);
+  const [ig,setig]= useState("");
+  const [brand,setbrand] = useState("");
+  const [disc,setdisc] = useState();
+  
+  const additem=() =>{
+    dispatch(addToBasket({price,name,brand,ig,disc}));
+    console.log(items);
+  }
+
+  const removeitem= () =>{
+    if(!items.length > 0) return;
+    dispatch(removeFromBasket(name))
+  }
+  
+  
+
+  const route = useRoute();
+  const [item,setItem] = useState([]);
+  
+  let headers = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }
+
+}
+useEffect(() => {
+  fetchData(),
+  setprice(route.params.MPR);
+  setName(route.params.Name);
+  setig(route.params.Image);
+setbrand(route.params.Brand);
+setdisc(route.params.Discount);
+}, [])
+const navigation = useNavigation();
+  async function fetchData(){
+
+    console.log("Fetching")
+    axios
+    .get("http://192.168.2.151:5500/Item",headers)
+
+    //.get("http://192.168.0.155:5500/alljobs",headers)
+
+    .then(function (response) {
+        setItem(response.data);
+        console.log(item.Tour[1].Image);
+    })
+    .catch(error => console.log(error));
+
+
+    
+}
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-white ">
         <ScrollView>
         <View className = "w-full h-96">
-      <Image source = {{uri: "https://img.ltwebstatic.com/images3_pi/2023/01/16/16738406500dc008422d1b9685949b81dfa634bd8f_thumbnail_600x.webp"}} className = "w-full h-full"/>
+      <Image source = {{uri: `${route.params.Image}`}} className = "w-full h-full"/>
       <View className = "flex-row absolute px-2">
+        <TouchableOpacity onPress={()=>{navigation.navigate("Home")}}>
         <ArrowLeftCircleIcon color = "black" size={40}/>
+        </TouchableOpacity>
         <MagnifyingGlassCircleIcon color = "black" size={40}/>
         <View className = "pl-64 flex-row">
         <HeartIcon color = "white" size = {40}/>
@@ -20,15 +84,15 @@ const ProductScreen = () => {
 
 
       <View className = "pt-4 flex-row">
-        <Text className = "text-lg px-2">Flared Jeans</Text>
+        <Text className = "text-lg px-2">{route.params.Name} </Text>
         <View className = "pt-2 pl-64">
         <ShareIcon  color = "black" size = {20}/>
         </View>
       </View>
 
       <View className = "px-2 flex-row gap-x-2 pt-2">
-        <Text className = "text-2xl text-red-500 font-bold">-20%</Text>
-        <Text className = "text-2xl font-bold">₹2,599</Text>
+        <Text className = "text-2xl text-red-500 font-bold">-{route.params.Discount}%</Text>
+        <Text className = "text-2xl font-bold">{route.params.MPR}</Text>
         <View className = "pt-2 pl-48 flex-row">
         <StarIcon color = "black" size = {16}/>
         <StarIcon color = "black" size = {16}/>
@@ -38,7 +102,7 @@ const ProductScreen = () => {
       </View>
 
       <View className = "px-2 ">
-        <Text className = "text-lg text-gray-300 textDecorationLine:'line-through'">MRP ₹3,299 Inclusive of all taxes</Text>
+        <Text className = "text-lg text-gray-300 textDecorationLine:'line-through'">MRP ₹ {route.params.MPR} Inclusive of all taxes</Text>
       </View>
 
 
@@ -52,42 +116,11 @@ const ProductScreen = () => {
 </View>
       </View>
 
-      <View className = "px-2  pt-8 ">
-        <Text className = "text-gray-500 text-base">Size: </Text>
-       
-        <View className = "flex-row pt-4 ">
-        <TouchableOpacity>
-            <View className = "px-2">
-            <View className = "h-10 w-14 border rounded-md items-center ">
-                <Text className = "pt-2"> S </Text>
-            </View>
-            </View>
-            </TouchableOpacity>
-
-<TouchableOpacity>
-            <View className = "px-2">
-            <View className = "h-10 w-14 border rounded-md items-center">
-                <Text className = "pt-2"> M </Text>
-            </View>
-            </View>
-            </TouchableOpacity>
-
-<TouchableOpacity>
-           <View className = "px-2">
-            <View className = "h-10 w-14 border rounded-md items-center">
-                <Text className = "pt-2"> L </Text>
-            </View>
-            </View>
-            </TouchableOpacity>
-        </View>
-      </View>
-
+      
 <View className = "pt-8 px-2">
 <Text className = "text-gray-500 text-base">Description:</Text>
-<Text className = "pt-2"> 100% Original Products </Text>
-<Text className = "pt-2"> Pay on delivery might be available </Text>
-<Text className = "pt-2"> Easy 14 days returns and exchanges</Text>
-<Text className = "pt-2"> Try & Buy might be available</Text>
+<Text className = "pt-2"> {route.params.Desc}</Text>
+
 </View>
 
 
@@ -99,9 +132,8 @@ const ProductScreen = () => {
          Although i was very contented when I got my order.. I loved the product.. 
         The fitting, color and material quality everything was just perfect 💯..</Text>
         <View className = "px-2 flex-row">
-        <Image source= {{uri: "https://img1.cgtrader.com/items/3637785/006981a86e/large/pair-of-folded-blue-jeans-for-wardrobe-3d-model-max-obj-fbx-c4d-stl-blend.jpg"}}
-        className = "h-20 w-20 rounded-md"/>
-        <Text className = "text-gray-500 pl-8 pt-16">Komal Chaudhari | Jan 18 2023</Text>
+        
+        <Text className = "text-gray-500 ">Komal Chaudhari | Jan 18 2023</Text>
         </View>
 </View>
 
@@ -130,43 +162,63 @@ const ProductScreen = () => {
         showsHorizontalScrollIndicator={true}
         className="gap-x-2"
         >
-         
-            <View className="bg-white flex-items-center rounded-2xl w-36 h-48">
+
+            
+
+            {
+
+item.Tour && item.Tour.map(item=>{
+return(
+    <>
+<TouchableOpacity 
+onPress={()=>{navigation.navigate("Product",
+{
+    Name:item.Name,
+    MPR:item.MRP,
+    Category:item.Category,
+    SubCategory:item.SubCategory,
+    Discount:item.Discount,
+    Brand:item.Brand,
+    Stock:item.Stock,
+    Desc:item.Desc,
+    Image:item.Image,
+
+
+
+    })
+}}
+className="pl-4">
+<View className="bg-white flex-items-center rounded-2xl w-36 h-56">
                 <View className = "pl-2 pt-2 pb-2">
-                <Image source = {{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9HfcLvbPJZ6YoGQ_Iabt-vJ_lb-aLGEc1vjSZfxHI__-Zgpz776iNjxSECOjdNjayvo&usqp=CAU"}} className = "h-32 w-32 rounded-md"/>
+                <Image source = {{uri: `${item.Image}`}} className = "h-32 w-32 rounded-md"/>
                 </View>
-            <Text className="font-bold text-sm text-center ">10% Discount</Text>
-            <Text className="font-bold text-center text-sm"> Flared Jeans-1</Text>
+            <Text className="font-bold text-sm text-center ">{item.Discount}% Discount</Text>
+            <Text className="font-bold text-center text-sm"> {item.Name}</Text>
             </View>
 
-            <View className="bg-white flex-items-center rounded-2xl w-36 h-48">
-                <View className = "pl-2 pt-2 pb-2">
-                <Image source = {{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9HfcLvbPJZ6YoGQ_Iabt-vJ_lb-aLGEc1vjSZfxHI__-Zgpz776iNjxSECOjdNjayvo&usqp=CAU"}} className = "h-32 w-32 rounded-md"/>
-                </View>
-            <Text className="font-bold text-sm text-center ">10% Discount</Text>
-            <Text className="font-bold text-center text-sm"> Flared Jeans-1</Text>
-            </View>
+</TouchableOpacity>
+</>)
 
-            <View className="bg-white flex-items-center rounded-2xl w-36 h-48">
-                <View className = "pl-2 pt-2 pb-2">
-                <Image source = {{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9HfcLvbPJZ6YoGQ_Iabt-vJ_lb-aLGEc1vjSZfxHI__-Zgpz776iNjxSECOjdNjayvo&usqp=CAU"}} className = "h-32 w-32 rounded-md"/>
-                </View>
-            <Text className="font-bold text-sm text-center ">10% Discount</Text>
-            <Text className="font-bold text-center text-sm"> Flared Jeans-1</Text>
-            </View>
-
-            <View className="bg-white flex-items-center rounded-2xl w-36 h-48">
-                <View className = "pl-2 pt-2 pb-2">
-                <Image source = {{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRz9HfcLvbPJZ6YoGQ_Iabt-vJ_lb-aLGEc1vjSZfxHI__-Zgpz776iNjxSECOjdNjayvo&usqp=CAU"}} className = "h-32 w-32 rounded-md"/>
-                </View>
-            <Text className="font-bold text-sm text-center ">10% Discount</Text>
-            <Text className="font-bold text-center text-sm"> Flared Jeans-1</Text>
-            </View>
+})
+}
+            
 
            
         </ScrollView>
 
+<TouchableOpacity 
+onPress={()=>{removeitem()}}><Text>ljdsf</Text></TouchableOpacity>
 </ScrollView>
+<View className="px-8 pb-8">
+<TouchableOpacity
+onPress={()=>{additem();
+  alert("Added to Bag")
+  navigation.navigate("Home")}}
+className="w-full rounded-3xl absolute bottom-4 left-8 h-16 bg-red-300">
+<Text className=" text-center text-2xl text-white font-bold pt-4">Add to Cart</Text>
+</TouchableOpacity>
+</View>
+
     </SafeAreaView>
   )
 }

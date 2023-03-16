@@ -335,6 +335,22 @@ app.get('/Pdt',cors(),(req,res)=>{
     })
 })
 
+app.get('/Item',cors(),(req,res)=>{
+    Tour.find({ Category: "Electronics" })
+    .then(result=>{
+        console.log("found");
+        res.status(200).json({
+            Tour:result
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+
 app.get('/Packed',cors(),(req,res)=>{
     Tour.find({Category:"Packed"})
     .then(result=>{
