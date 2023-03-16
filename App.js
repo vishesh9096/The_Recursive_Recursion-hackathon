@@ -7,7 +7,6 @@ import HomeScreen from './screens/Tab/HomeScreen';
 import 'react-native-gesture-handler';
 import ProductScreen from './screens/ProductScreen';
 import SubCategoryScreen from './screens/SubCategoryScreen';
-import TrouserWscreen from './screens/TrouserWscreen';
 
 import TDScreen from './screens/TDScreen';
 import { store } from './store'
@@ -24,7 +23,7 @@ export default function App() {
     <NavigationContainer>
     <Provider store={store}>
     <TailwindProvider>
-    <Stack.Navigator screenOptions={{headerShown : false}}>
+
 
 
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
@@ -37,6 +36,14 @@ export default function App() {
         <Stack.Screen name = "wTrouser" component = {TrouserWscreen}/>
 
         <Stack.Screen name="3D" component={TDScreen} />
+
+
+    <Stack.Navigator screenOptions={{headerShown : false}}>
+    <Stack.Screen name="HomeScreen" component={HomeScreen} />
+    <Stack.Screen name = "SubCategory" component={SubCategoryScreen}/>
+      <Stack.Screen name = "Product" component= {ProductScreen}/>
+        <Stack.Screen name="3D" component={TDScreen} />
+     
 
       </Stack.Navigator>
     </TailwindProvider>

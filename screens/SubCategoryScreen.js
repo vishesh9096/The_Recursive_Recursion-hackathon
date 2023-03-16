@@ -11,7 +11,7 @@ const SubCategoryScreen = () => {
         <Image source={{uri: "https://cdn.cliqueinc.com/posts/247533/what-to-wear-in-february-247533-1675168490288-main.700x0c.jpg"}} className = "w-full h-60"/>
 
         <View className = "flex-row px-2 gap-x-3">
-  <TouchableOpacity onPress = {() => navigation.navigate = ('wTrouser')}>
+  <TouchableOpacity>
       <View className = "pt-4">
         <Image source={{uri: "https://rukminim1.flixcart.com/image/612/612/xif0q/trouser/a/i/d/s-800-vel-women-trouser-foxter-original-imaghupydxpjvytd.jpeg?q=70"}} className = "h-44 w-44 rounded-lg"/>
         <View className = "absolute flex-row pt-6 px-2">
