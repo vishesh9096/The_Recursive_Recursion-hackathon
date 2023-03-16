@@ -303,7 +303,24 @@ app.get('/Cooked',cors(),(req,res)=>{
 
 
 app.get('/Raw',cors(),(req,res)=>{
-    Tour.find({Category:"Raw"})
+    Tour.find({ Discount: { $gte: 5 } })
+    .then(result=>{
+        console.log("found");
+        res.status(200).json({
+            Tour:result
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+
+
+app.get('/Pdt',cors(),(req,res)=>{
+    Tour.find({ MRP: { $gte: 5 } })
     .then(result=>{
         console.log("found");
         res.status(200).json({

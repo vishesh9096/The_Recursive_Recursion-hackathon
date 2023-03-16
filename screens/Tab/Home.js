@@ -10,12 +10,16 @@ const Drawer = createDrawerNavigator();
 const Home = () => {
   return (
     <Drawer.Navigator screenOptions={{
-      headerShown: true,
+      headerShown: false,
+
       headerTransparent:true,
-      headerTintColor: 'gray',
+      headerTintColor: 'black',
+      headerTitle:""
+      
     
-    }}>
-    <Drawer.Screen name="Home" component={HomeDash} />
+    }}
+     >
+    <Drawer.Screen name="Home" component={HomeDash}  />
 
   </Drawer.Navigator>
   )
