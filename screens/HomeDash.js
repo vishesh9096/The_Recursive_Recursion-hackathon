@@ -149,19 +149,27 @@ const HomeDash = () => {
             <Carousel
                 loop
                 width={width}
+
                 height={500}
+
+                height={width}
+
                 autoPlay={true}
                 data={data}
                 scrollAnimationDuration={2000}
                 renderItem={({  index }) => (
+
                     <View className="">
 
-                        <Image source={{uri:`${data[index].imgUrl}`   }} className="w-full h-full"/>
+                    <View className="pt-28 h-60">
+
+
+                        <Image source={{uri:`${data[index].imgUrl}`   }} className="w-120 h-80"/>
                         <Text style={{ textAlign: 'center', fontSize: 30 }}>
                            {data[index].title}
                         </Text>
                     </View>
-                )}
+                )
             />
 
 <View className="flex-row items-center px-4 pt-8 gap-x-4">
