@@ -223,7 +223,7 @@ onPress={()=>{removeitem()}}><Text>ljdsf</Text></TouchableOpacity>
 onPress={()=>{additem();
   alert("Added to Bag")
   navigation.navigate("Home")}}
-className="w-full rounded-3xl absolute bottom-4 left-8 h-16 bg-red-300">
+className="w-full rounded-3xl absolute bottom-4 left-8 h-16 bg-[#DE5D83]">
 <Text className=" text-center text-2xl text-white font-bold pt-4">Add to Cart</Text>
 </TouchableOpacity>
 </View>

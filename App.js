@@ -17,6 +17,8 @@ import KidsScreen from './screens/KidsScreen';
 import MenScreen from './screens/MenScreen';
 import FootScreen from './screens/FootScreen';
 import SearchScreen from './screens/SearchScreen';
+import AnimationScreen from './screens/AnimationScreen';
+import PushNotifiScreen from './screens/PushNotifiScreen';
 
 
 
@@ -30,6 +32,7 @@ export default function App() {
     <Provider store={store}>
     <TailwindProvider>
     <Stack.Navigator screenOptions={{headerShown : false}}>
+    <Stack.Screen name="Animation" component={AnimationScreen} />
     <Stack.Screen name="Login" component={LoginScreen} />
 
     <Stack.Screen name="HomeScreen" component={HomeScreen} />
@@ -42,6 +45,7 @@ export default function App() {
         <Stack.Screen name="Search" component={SearchScreen} />
      
 
+    <Stack.Screen name="Noti" component={PushNotifiScreen} />
 
       </Stack.Navigator>
     </TailwindProvider>

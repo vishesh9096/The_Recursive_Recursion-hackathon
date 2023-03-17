@@ -4,9 +4,11 @@ import { ArrowLeftIcon, CheckIcon, HeartIcon, TruckIcon } from 'react-native-her
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import { addToBasket, removeFromBasket, selectBasketItems, selectBasketTotal } from '../features/basketSlice';
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/native';
 
 const CartScreen = () => {
     const dispatch = useDispatch();
+    const navigation = useNavigation();
     const basketTotal = useSelector(selectBasketTotal)
     useEffect(() => {
         console.log(items)
@@ -121,7 +123,9 @@ const CartScreen = () => {
 
 
             
-<TouchableOpacity className="px-8 w-full">
+<TouchableOpacity
+onPress={()=>{navigation.navigate("Home")}}
+className="px-8 w-full">
 < View className="w-full h-12 bg-[#fb5aaa] rounded-xl ">
 <Text className='text-center text-2xl pt-2 font-bold text-white'>PLACE ORDER</Text>
 </View>

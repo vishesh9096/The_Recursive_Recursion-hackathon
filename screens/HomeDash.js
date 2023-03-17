@@ -179,7 +179,7 @@ const HomeDash = () => {
                 )}
             />
 
-<View className="flex-row items-center px-2 pt-8 gap-x-4">
+<View className="flex-row items-center px-4 pt-8 gap-x-4">
     <View className="h-48 w-48 rounded-2xl ">
         <ImageBackground 
         className="h-full w-full rounded-2xl"
@@ -208,7 +208,7 @@ const HomeDash = () => {
 
 </View>
 
-<View className="w-full pt-4 h-32  bg-white">
+<View className="w-full  pt-4 h-32  bg-white">
     <TouchableOpacity
     onPress={()=>{navigation.navigate("Search")}}
     >
