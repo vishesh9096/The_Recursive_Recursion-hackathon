@@ -106,7 +106,8 @@ const HomeDash = () => {
         </View>
 
         <View className="flex-row items-center  justify-end   gap-x-4" >
-            <TouchableOpacity> 
+            <TouchableOpacity 
+            onPress={()=>{navigation.navigate("Search")}}> 
                 <MagnifyingGlassIcon color={"black"} size={30} />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -115,12 +116,12 @@ const HomeDash = () => {
             <TouchableOpacity><HeartIcon color={"black"} size={30}/></TouchableOpacity>
         </View>
         </View>
-        <ScrollView className=" px-2 bg-white">
+        <ScrollView className="  bg-white">
 
 
         <ScrollView horizontal={true} className="pt-2 pb-28 max-h-32 px-4 gap-x-6">
             <TouchableOpacity
-            onPress={()=>{getValues()}}
+            onPress={()=>{navigation.navigate("Men")}}
             className="h-20 w-20 rounded-full bg-red-300">
                 <Image 
                 className="h-20 w-20 rounded-full"
@@ -134,14 +135,18 @@ const HomeDash = () => {
                 <Text className="text-center text-xl  text-gray-500 ">WOMEN</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity className="h-20 w-20 rounded-full bg-red-300">
+            <TouchableOpacity
+            onPress={()=>{navigation.navigate("Kids")}}
+            className="h-20 w-20 rounded-full bg-red-300">
                 <Image 
                 className="h-20 w-20 rounded-full"
                 source={{uri:"https://a9p9n2x2.stackpathcdn.com/wp-content/blogs.dir/1/files/2015/03/iStock-109724691-e1523048812150.jpg"}} />
                 <Text className="text-center text-xl  text-gray-500 ">KIDS</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity className="h-20 w-20 rounded-full bg-red-300">
+            <TouchableOpacity
+            onPress={()=>{navigation.navigate("Footwear")}}
+            className="h-20 w-20 rounded-full bg-red-300">
                 <Image 
                 className="h-20 w-20 rounded-full"
                 source={{uri:"https://5.imimg.com/data5/IOS/Default/2021/6/LB/WF/HS/17552598/product-jpeg-500x500.png"}} />
@@ -174,7 +179,7 @@ const HomeDash = () => {
                 )}
             />
 
-<View className="flex-row items-center px-4 pt-8 gap-x-4">
+<View className="flex-row items-center px-2 pt-8 gap-x-4">
     <View className="h-48 w-48 rounded-2xl ">
         <ImageBackground 
         className="h-full w-full rounded-2xl"
@@ -204,7 +209,9 @@ const HomeDash = () => {
 </View>
 
 <View className="w-full pt-4 h-32  bg-white">
-    <TouchableOpacity>
+    <TouchableOpacity
+    onPress={()=>{navigation.navigate("Search")}}
+    >
     <Image source={require('../assets/Banner.png')} className="w-full h-28"/>
         
     </TouchableOpacity>
@@ -284,7 +291,24 @@ className="pl-4">
 pdt.Tour && pdt.Tour.map(pdt=>{
 return(
     <>
-<TouchableOpacity className="  flex-row  items-center">
+<TouchableOpacity
+onPress={()=>{navigation.navigate("Product",
+{
+    Name:pdt.Name,
+    MPR:pdt.MRP,
+    Category:pdt.Category,
+    SubCategory:pdt.SubCategory,
+    Discount:pdt.Discount,
+    Brand:pdt.Brand,
+    Stock:pdt.Stock,
+    Desc:pdt.Desc,
+    Image:pdt.Image,
+
+
+
+    })
+}}
+className="  flex-row  items-center">
 <View className="h-60 w-48 bg-white rounded-xl">
     <View>
     <Image source={{uri:`${pdt.Image}`}} className="h-full w-full "/>

@@ -1,8 +1,10 @@
 import { View, Text, ScrollView, SafeAreaView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { ChevronDownIcon } from 'react-native-heroicons/solid'
+import { useNavigation } from '@react-navigation/native'
 
 const CategoriesScreen = () => {
+  const navigation = useNavigation()
   return (
     <SafeAreaView>
       <ScrollView>
@@ -41,7 +43,9 @@ const CategoriesScreen = () => {
       </View>
 </TouchableOpacity>
 
-<TouchableOpacity>
+<TouchableOpacity
+onPress={()=>{navigation.navigate("Men")}}
+>
       <View className = "pt-4">
         <Image source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQW6n67RvaqKmUXrV3F_1kQtbI-o1Qt_Hqc923RaLSa_vlTnOcYu4NZImg1AszmX5zmKuw&usqp=CAU"}} className = "h-40 w-32 rounded-lg"/>
         <View className = "absolute flex-row pt-4 px-1">
@@ -58,7 +62,8 @@ const CategoriesScreen = () => {
 
 
   <View className = "flex-row px-2 gap-x-3">
-    <TouchableOpacity>
+    <TouchableOpacity
+    onPress={()=>{navigation.navigate("Kids")}}>
       <View className = "pt-4">
         <Image source={{uri: "https://img.freepik.com/free-photo/stylish-young-teen-girl-gray_155003-5250.jpg"}} className = "h-40 w-32 rounded-lg"/>
         <View className = "absolute flex-row pt-4 px-1">
@@ -82,7 +87,9 @@ const CategoriesScreen = () => {
       </View>
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=>{navigation.navigate("Footwear")}}
+      >
       <View className = "pt-4">
         <Image source={{uri: "https://static.footshop.com/208171-full_product/40549.jpg"}} className = "h-40 w-32 rounded-lg"/>
         <View className = "absolute flex-row pt-4 px-1">

@@ -62,7 +62,7 @@ const CartScreen = () => {
     items && items.map(items=>{
         return(
             <>
-             <View className="h-52 bg-white  w-full px-4 flex-row items-center">
+             <View className="h-52 pt-4 bg-white  w-full px-4 flex-row items-center">
                 <View>
                 <Image source={{uri:`${items.ig}`}}
                 className="h-full w-32"/>

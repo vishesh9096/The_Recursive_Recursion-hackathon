@@ -351,6 +351,54 @@ app.get('/Item',cors(),(req,res)=>{
     })
 })
 
+app.get('/Kids',cors(),(req,res)=>{
+    Tour.find({ Category: "Kids" })
+    .then(result=>{
+        console.log("found");
+        res.status(200).json({
+            Tour:result
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+app.get('/Men',cors(),(req,res)=>{
+    Tour.find({ Category: "Mens" })
+    .then(result=>{
+        console.log("found");
+        res.status(200).json({
+            Tour:result
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+
+app.get('/Foot',cors(),(req,res)=>{
+    Tour.find({ Category: "FootWear" })
+    .then(result=>{
+        console.log("found");
+        res.status(200).json({
+            Tour:result
+        })
+    })
+    .catch(err=>{
+        console.log(err);
+        res.status(500).json({
+            error:err
+        })
+    })
+})
+
+
 app.get('/Packed',cors(),(req,res)=>{
     Tour.find({Category:"Packed"})
     .then(result=>{

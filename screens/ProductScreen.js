@@ -9,6 +9,7 @@ import { addToBasket, removeFromBasket, selectBasketItems, selectBasketTotal } f
 const ProductScreen = () => {
   const basketTotal = useSelector(selectBasketTotal)
 
+
   const dispatch  = useDispatch();
   const items = useSelector(selectBasketItems);
   const [name,setName] = useState("");
@@ -48,6 +49,7 @@ setbrand(route.params.Brand);
 setdisc(route.params.Discount);
 }, [])
 const navigation = useNavigation();
+
   async function fetchData(){
 
     console.log("Fetching")
@@ -103,6 +105,13 @@ const navigation = useNavigation();
 
       <View className = "px-2 ">
         <Text className = "text-lg text-gray-300 textDecorationLine:'line-through'">MRP ₹ {route.params.MPR} Inclusive of all taxes</Text>
+      </View>
+    <View className="pl-2 pt-2 ">
+      <TouchableOpacity 
+      onPress={()=>{navigation.navigate("3D")}}
+      className="w-32 h-8 bg-pink-100 rounded-xl">
+        <Text className="text-lg  text-center">View in 3D</Text>
+      </TouchableOpacity>
       </View>
 
 

@@ -5,8 +5,8 @@ const MyOrderScreen = () => {
   return (
     <SafeAreaView>
         <ScrollView>
-        <View className ="pt-4 px-2">
-      <Text className ="text-xl font-bold">My Orders </Text>
+        <View className ="pt-4 ">
+      <Text className ="text-xl font-bold ">My Orders </Text>
       </View>
 
 <View className = "pt-4 pb-4">
