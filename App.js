@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/Tab/HomeScreen';
 import 'react-native-gesture-handler';
+import TDScreen from './screens/TDScreen';
 
 
 
@@ -16,6 +17,7 @@ export default function App() {
     <NavigationContainer>
     <TailwindProvider>
     <Stack.Navigator screenOptions={{headerShown : false}}>
+        <Stack.Screen name="3D" component={TDScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
       </Stack.Navigator>
     </TailwindProvider>
